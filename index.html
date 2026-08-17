@@ -17,16 +17,16 @@
     const count_hoger = document.getElementById('button-hoger');
     const count_lager = document.getElementById('button-lager');
 
-    socket.on('counter:update', (value) => {
+    socket.on('update', (value) => {
       current.textContent = value;
     });
 
     count_hoger.addEventListener('click', () => {
-      socket.emit('counter:increment');
+      socket.emit('hoger');
     });
 
     count_lager.addEventListener('click', () => {
-      socket.emit('counter:decrement');
+      socket.emit('lager');
     });
   </script>
 </body>
