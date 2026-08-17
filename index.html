@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>LeagueFM Test Opdracht</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1 id="counter">0</h1>
+  <button id="button-lager">-1</button>
+  <button id="button-hoger">+1</button>
+
+  <script>
+    const socket = io('http://localhost:3002');
+
+    const current = document.getElementById('counter');
+    const hoger = document.getElementById('button-hoger');
+    const lager = document.getElementById('button-lager');
+
+    socket.on('counter:update', (value) => {
+      current.textContent = value;
+    });
+
+    hoger.addEventListener('click', () => {
+      socket.emit('counter:increment');
+    });
+
+    lager.addEventListener('click', () => {
+      socket.emit('counter:decrement');
+    });
+  </script>
+</body>
+</html>
