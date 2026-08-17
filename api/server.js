@@ -11,22 +11,22 @@ const io = new Server(server, {
   }
 });
 
-let counter = 0;
+let aantal = 0;
 
 io.on('connection', (socket) => {
-  socket.emit('counter:update', counter);
+  socket.emit('update', aantal);
 
-  socket.on('counter:increment', () => {
-    counter++;
-    io.emit('counter:update', counter);
+  socket.on('hoger', () => {
+    aantal++;
+    io.emit('update', aantal);
   });
 
-  socket.on('counter:decrement', () => {
-    counter--;
-    io.emit('counter:update', counter);
+  socket.on('lager', () => {
+    aantal--;
+    io.emit('update', aantal);
   });
 });
 
 server.listen(3002, () => {
-  console.log('Server gestart op port 3002');
+  console.log('Server draait op poort 3002');
 });
