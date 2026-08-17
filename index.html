@@ -14,18 +14,18 @@
     const socket = io('http://localhost:3002');
 
     const current = document.getElementById('counter');
-    const hoger = document.getElementById('button-hoger');
-    const lager = document.getElementById('button-lager');
+    const count_hoger = document.getElementById('button-hoger');
+    const count_lager = document.getElementById('button-lager');
 
     socket.on('counter:update', (value) => {
       current.textContent = value;
     });
 
-    hoger.addEventListener('click', () => {
+    count_hoger.addEventListener('click', () => {
       socket.emit('counter:increment');
     });
 
-    lager.addEventListener('click', () => {
+    count_lager.addEventListener('click', () => {
       socket.emit('counter:decrement');
     });
   </script>
